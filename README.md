@@ -1,3 +1,4 @@
+# Env to run samples
 ## Docker image
 - timho0110/nips-adversarial
 
@@ -14,8 +15,8 @@
  - [Awesome Adversarial Machine Learning](https://github.com/yenchenlin/awesome-adversarial-machine-learning#awesome-adversarial-machine-learning-)
 
 ## Attack
- - Adversarial Example Defenses: Ensembles of Weak Defenses are not Strong, 15 Jun 2017 **(Read)**
+ - [Adversarial Example Defenses: Ensembles of Weak Defenses are not Strong](https://arxiv.org/pdf/1706.04701), 15 Jun 2017 **(Read)**
 
 ## Defense
- - Extending Defensive Distillation, N. Papernot et al., arxiv 2017 **(Read)**
+ - [Extending Defensive Distillation](https://arxiv.org/pdf/1705.05264), N. Papernot et al., arxiv 2017 **(Read)**
  
