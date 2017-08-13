@@ -31,6 +31,7 @@ class Evaluator(object):
         orig_correct_num = 0.0
         after_attack_correct_num = 0.0
         after_attack_difference_num = 0.0
+        no_effect_correct_num = 0.0
         total_num = 0.0
 
         if not os.path.exists(output_dir + 'Adversarial/FalseNegative'):
@@ -54,6 +55,8 @@ class Evaluator(object):
                 orig_correctness = (orig_output_np == gt_labels)
                 after_attack_correctness = (attacked_output_np == gt_labels)
                 after_attack_difference = (attacked_output_np != orig_output_np)
+
+                no_effect_correct_num += np.sum(np.multiply((attacked_output_np == orig_output_np), (orig_output_np == gt_labels)))
 
                 orig_correct_num += np.sum(orig_correctness)
                 after_attack_correct_num += np.sum(after_attack_correctness)
@@ -83,4 +86,4 @@ class Evaluator(object):
         print('Orig Accuracy = %f' % (orig_correct_num / total_num))
         print('After Attack Accuracy = %f' % (after_attack_correct_num / total_num))
         print(
-        'False positive attacks = %d' % (after_attack_difference_num - (orig_correct_num - after_attack_correct_num)))
+        'False positive attacks = %d' % (after_attack_correct_num - no_effect_correct_num))

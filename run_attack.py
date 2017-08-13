@@ -70,15 +70,15 @@ def main(argv):
 
         img_count = 0
         with tf.train.MonitoredSession(session_creator=session_creator) as sess:
-            for filenames, images, _ in data_generator(FLAGS.ground_truth_csv,
+            for filenames, images, _, orig_size_images in data_generator(FLAGS.ground_truth_csv,
                                                        batch_shape,
                                                        FLAGS.orig_img_dir):
                 adv_images = sess.run(x_adv, feed_dict={model.input_tensor: images})
 
                 img_count += len(adv_images)
-                print('Processed {:5d} images'.format(img_count))
 
-                save_images(adv_images, images, filenames, FLAGS.attacked_img_dir)
+                mean_perturbation = save_images(adv_images, orig_size_images, filenames, FLAGS.attacked_img_dir)
+                print('Processed {:5d} images, mean perturbation= {}'.format(img_count, mean_perturbation))
 
 
 if __name__ == '__main__':
